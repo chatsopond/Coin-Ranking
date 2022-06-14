@@ -12,6 +12,7 @@ struct LMWN_Coin_2App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.light)
         }
     }
 }

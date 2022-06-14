@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B6E8AC228591E86008752DE /* PreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E8AC128591E86008752DE /* PreferenceKey.swift */; };
 		6BAEFCEE2858FC2E00A2C8BA /* LMWN_Coin_2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFCED2858FC2E00A2C8BA /* LMWN_Coin_2App.swift */; };
 		6BAEFCF02858FC2E00A2C8BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFCEF2858FC2E00A2C8BA /* ContentView.swift */; };
 		6BAEFCF22858FC2F00A2C8BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BAEFCF12858FC2F00A2C8BA /* Assets.xcassets */; };
 		6BAEFCF52858FC2F00A2C8BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BAEFCF42858FC2F00A2C8BA /* Preview Assets.xcassets */; };
 		6BAEFCFD2858FC6500A2C8BA /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFCFC2858FC6500A2C8BA /* ExploreView.swift */; };
-		6BAEFD012858FD4900A2C8BA /* LoadingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD002858FD4900A2C8BA /* LoadingSection.swift */; };
+		6BAEFD012858FD4900A2C8BA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD002858FD4900A2C8BA /* LoadingView.swift */; };
 		6BAEFD032858FEA700A2C8BA /* CardRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD022858FEA700A2C8BA /* CardRectangle.swift */; };
 		6BAEFD052858FF7800A2C8BA /* Color+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD042858FF7800A2C8BA /* Color+SwiftUI.swift */; };
 		6BAEFD072858FFDD00A2C8BA /* InviteFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD062858FFDD00A2C8BA /* InviteFriend.swift */; };
@@ -21,22 +22,50 @@
 		6BAEFD102859047300A2C8BA /* AsyncRemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD0F2859047300A2C8BA /* AsyncRemoteImage.swift */; };
 		6BAEFD132859049B00A2C8BA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD122859049B00A2C8BA /* Utilities.swift */; };
 		6BAEFD15285904B600A2C8BA /* SVGAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD14285904B600A2C8BA /* SVGAsyncImage.swift */; };
+		6BAEFD182859075800A2C8BA /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD172859075800A2C8BA /* Coin.swift */; };
+		6BAEFD1B28590A4700A2C8BA /* CoinAPIRequestLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD1A28590A4700A2C8BA /* CoinAPIRequestLoader.swift */; };
+		6BAEFD1D28590B1600A2C8BA /* CoinAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD1C28590B1600A2C8BA /* CoinAPIResponse.swift */; };
+		6BAEFD2528590E0D00A2C8BA /* CoinsAPILoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD2428590E0D00A2C8BA /* CoinsAPILoaderTests.swift */; };
+		6BAEFD2C28590E2800A2C8BA /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD2B28590E2800A2C8BA /* JsonLoader.swift */; };
+		6BAEFD2E28590E3800A2C8BA /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD2D28590E3800A2C8BA /* MockURLProtocol.swift */; };
+		6BAEFD3228590E9400A2C8BA /* coins-limit-1-offset-1.json in Resources */ = {isa = PBXBuildFile; fileRef = 6BAEFD3128590E9100A2C8BA /* coins-limit-1-offset-1.json */; };
+		6BAEFD352859128F00A2C8BA /* CoinCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFD332859126600A2C8BA /* CoinCard.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6BAEFD2628590E0D00A2C8BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BAEFCE22858FC2E00A2C8BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BAEFCE92858FC2E00A2C8BA;
+			remoteInfo = "LMWN Coin 2";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		6B6E8AC128591E86008752DE /* PreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKey.swift; sourceTree = "<group>"; };
 		6BAEFCEA2858FC2E00A2C8BA /* LMWN Coin 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LMWN Coin 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BAEFCED2858FC2E00A2C8BA /* LMWN_Coin_2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMWN_Coin_2App.swift; sourceTree = "<group>"; };
 		6BAEFCEF2858FC2E00A2C8BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6BAEFCF12858FC2F00A2C8BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BAEFCF42858FC2F00A2C8BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6BAEFCFC2858FC6500A2C8BA /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
-		6BAEFD002858FD4900A2C8BA /* LoadingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSection.swift; sourceTree = "<group>"; };
+		6BAEFD002858FD4900A2C8BA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		6BAEFD022858FEA700A2C8BA /* CardRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRectangle.swift; sourceTree = "<group>"; };
 		6BAEFD042858FF7800A2C8BA /* Color+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+SwiftUI.swift"; sourceTree = "<group>"; };
 		6BAEFD062858FFDD00A2C8BA /* InviteFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriend.swift; sourceTree = "<group>"; };
 		6BAEFD0F2859047300A2C8BA /* AsyncRemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncRemoteImage.swift; sourceTree = "<group>"; };
 		6BAEFD122859049B00A2C8BA /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		6BAEFD14285904B600A2C8BA /* SVGAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGAsyncImage.swift; sourceTree = "<group>"; };
+		6BAEFD172859075800A2C8BA /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		6BAEFD1A28590A4700A2C8BA /* CoinAPIRequestLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAPIRequestLoader.swift; sourceTree = "<group>"; };
+		6BAEFD1C28590B1600A2C8BA /* CoinAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAPIResponse.swift; sourceTree = "<group>"; };
+		6BAEFD2228590E0D00A2C8BA /* LMWN Coin 2 Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LMWN Coin 2 Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BAEFD2428590E0D00A2C8BA /* CoinsAPILoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPILoaderTests.swift; sourceTree = "<group>"; };
+		6BAEFD2B28590E2800A2C8BA /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
+		6BAEFD2D28590E3800A2C8BA /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		6BAEFD3128590E9100A2C8BA /* coins-limit-1-offset-1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "coins-limit-1-offset-1.json"; sourceTree = "<group>"; };
+		6BAEFD332859126600A2C8BA /* CoinCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +78,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6BAEFD1F28590E0D00A2C8BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -57,6 +93,7 @@
 			children = (
 				6BAEFCFB2858FC4E00A2C8BA /* Shared */,
 				6BAEFCEC2858FC2E00A2C8BA /* LMWN Coin 2 */,
+				6BAEFD2328590E0D00A2C8BA /* LMWN Coin 2 Tests */,
 				6BAEFCEB2858FC2E00A2C8BA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				6BAEFCEA2858FC2E00A2C8BA /* LMWN Coin 2.app */,
+				6BAEFD2228590E0D00A2C8BA /* LMWN Coin 2 Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,33 +127,35 @@
 		6BAEFCFB2858FC4E00A2C8BA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				6BAEFCFF2858FD2C00A2C8BA /* Components */,
-				6BAEFCFE2858FCB500A2C8BA /* Resources */,
+				6BAEFD1928590A0B00A2C8BA /* Coin */,
+				6BAEFD16285906F500A2C8BA /* Model */,
+				6BAEFCFF2858FD2C00A2C8BA /* Component */,
+				6BAEFCFE2858FCB500A2C8BA /* Resource */,
 				6BAEFCFC2858FC6500A2C8BA /* ExploreView.swift */,
 				6BAEFD112859047C00A2C8BA /* Supporting Files */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		6BAEFCFE2858FCB500A2C8BA /* Resources */ = {
+		6BAEFCFE2858FCB500A2C8BA /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				6BAEFCF12858FC2F00A2C8BA /* Assets.xcassets */,
 				6BAEFD042858FF7800A2C8BA /* Color+SwiftUI.swift */,
 				6BAEFCF32858FC2F00A2C8BA /* Preview Content */,
 			);
-			path = Resources;
+			path = Resource;
 			sourceTree = "<group>";
 		};
-		6BAEFCFF2858FD2C00A2C8BA /* Components */ = {
+		6BAEFCFF2858FD2C00A2C8BA /* Component */ = {
 			isa = PBXGroup;
 			children = (
 				6BAEFD0E2859045B00A2C8BA /* AsyncRemoteImage */,
-				6BAEFD002858FD4900A2C8BA /* LoadingSection.swift */,
 				6BAEFD022858FEA700A2C8BA /* CardRectangle.swift */,
 				6BAEFD062858FFDD00A2C8BA /* InviteFriend.swift */,
+				6BAEFD002858FD4900A2C8BA /* LoadingView.swift */,
 			);
-			path = Components;
+			path = Component;
 			sourceTree = "<group>";
 		};
 		6BAEFD0E2859045B00A2C8BA /* AsyncRemoteImage */ = {
@@ -133,6 +173,52 @@
 				6BAEFD122859049B00A2C8BA /* Utilities.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6BAEFD16285906F500A2C8BA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6BAEFD172859075800A2C8BA /* Coin.swift */,
+				6BAEFD1C28590B1600A2C8BA /* CoinAPIResponse.swift */,
+				6B6E8AC128591E86008752DE /* PreferenceKey.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6BAEFD1928590A0B00A2C8BA /* Coin */ = {
+			isa = PBXGroup;
+			children = (
+				6BAEFD1A28590A4700A2C8BA /* CoinAPIRequestLoader.swift */,
+				6BAEFD332859126600A2C8BA /* CoinCard.swift */,
+			);
+			path = Coin;
+			sourceTree = "<group>";
+		};
+		6BAEFD2328590E0D00A2C8BA /* LMWN Coin 2 Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6BAEFD3028590E5000A2C8BA /* Shared */,
+				6BAEFD2F28590E4400A2C8BA /* Resource */,
+				6BAEFD2428590E0D00A2C8BA /* CoinsAPILoaderTests.swift */,
+			);
+			path = "LMWN Coin 2 Tests";
+			sourceTree = "<group>";
+		};
+		6BAEFD2F28590E4400A2C8BA /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				6BAEFD3128590E9100A2C8BA /* coins-limit-1-offset-1.json */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		6BAEFD3028590E5000A2C8BA /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				6BAEFD2B28590E2800A2C8BA /* JsonLoader.swift */,
+				6BAEFD2D28590E3800A2C8BA /* MockURLProtocol.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +245,24 @@
 			productReference = 6BAEFCEA2858FC2E00A2C8BA /* LMWN Coin 2.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6BAEFD2128590E0D00A2C8BA /* LMWN Coin 2 Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BAEFD2828590E0D00A2C8BA /* Build configuration list for PBXNativeTarget "LMWN Coin 2 Tests" */;
+			buildPhases = (
+				6BAEFD1E28590E0D00A2C8BA /* Sources */,
+				6BAEFD1F28590E0D00A2C8BA /* Frameworks */,
+				6BAEFD2028590E0D00A2C8BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6BAEFD2728590E0D00A2C8BA /* PBXTargetDependency */,
+			);
+			name = "LMWN Coin 2 Tests";
+			productName = "LMWN Coin 2 Tests";
+			productReference = 6BAEFD2228590E0D00A2C8BA /* LMWN Coin 2 Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -171,6 +275,10 @@
 				TargetAttributes = {
 					6BAEFCE92858FC2E00A2C8BA = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					6BAEFD2128590E0D00A2C8BA = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 6BAEFCE92858FC2E00A2C8BA;
 					};
 				};
 			};
@@ -192,6 +300,7 @@
 			projectRoot = "";
 			targets = (
 				6BAEFCE92858FC2E00A2C8BA /* LMWN Coin 2 */,
+				6BAEFD2128590E0D00A2C8BA /* LMWN Coin 2 Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -206,6 +315,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6BAEFD2028590E0D00A2C8BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BAEFD3228590E9400A2C8BA /* coins-limit-1-offset-1.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -217,16 +334,39 @@
 				6BAEFD032858FEA700A2C8BA /* CardRectangle.swift in Sources */,
 				6BAEFCFD2858FC6500A2C8BA /* ExploreView.swift in Sources */,
 				6BAEFD052858FF7800A2C8BA /* Color+SwiftUI.swift in Sources */,
-				6BAEFD012858FD4900A2C8BA /* LoadingSection.swift in Sources */,
+				6BAEFD012858FD4900A2C8BA /* LoadingView.swift in Sources */,
 				6BAEFD072858FFDD00A2C8BA /* InviteFriend.swift in Sources */,
 				6BAEFD132859049B00A2C8BA /* Utilities.swift in Sources */,
 				6BAEFD15285904B600A2C8BA /* SVGAsyncImage.swift in Sources */,
+				6BAEFD352859128F00A2C8BA /* CoinCard.swift in Sources */,
+				6B6E8AC228591E86008752DE /* PreferenceKey.swift in Sources */,
+				6BAEFD1B28590A4700A2C8BA /* CoinAPIRequestLoader.swift in Sources */,
 				6BAEFD102859047300A2C8BA /* AsyncRemoteImage.swift in Sources */,
+				6BAEFD182859075800A2C8BA /* Coin.swift in Sources */,
+				6BAEFD1D28590B1600A2C8BA /* CoinAPIResponse.swift in Sources */,
 				6BAEFCEE2858FC2E00A2C8BA /* LMWN_Coin_2App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6BAEFD1E28590E0D00A2C8BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BAEFD2E28590E3800A2C8BA /* MockURLProtocol.swift in Sources */,
+				6BAEFD2C28590E2800A2C8BA /* JsonLoader.swift in Sources */,
+				6BAEFD2528590E0D00A2C8BA /* CoinsAPILoaderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6BAEFD2728590E0D00A2C8BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6BAEFCE92858FC2E00A2C8BA /* LMWN Coin 2 */;
+			targetProxy = 6BAEFD2628590E0D00A2C8BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6BAEFCF62858FC2F00A2C8BA /* Debug */ = {
@@ -279,7 +419,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -333,7 +473,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -350,7 +490,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Shared/Resources/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Shared/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = HB4FTR388G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -380,7 +520,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Shared/Resources/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Shared/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = HB4FTR388G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -403,6 +543,44 @@
 			};
 			name = Release;
 		};
+		6BAEFD2928590E0D00A2C8BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HB4FTR388G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chatsopond.LMWN-Coin-2-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LMWN Coin 2.app/LMWN Coin 2";
+			};
+			name = Debug;
+		};
+		6BAEFD2A28590E0D00A2C8BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HB4FTR388G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chatsopond.LMWN-Coin-2-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LMWN Coin 2.app/LMWN Coin 2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -420,6 +598,15 @@
 			buildConfigurations = (
 				6BAEFCF92858FC2F00A2C8BA /* Debug */,
 				6BAEFCFA2858FC2F00A2C8BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6BAEFD2828590E0D00A2C8BA /* Build configuration list for PBXNativeTarget "LMWN Coin 2 Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BAEFD2928590E0D00A2C8BA /* Debug */,
+				6BAEFD2A28590E0D00A2C8BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

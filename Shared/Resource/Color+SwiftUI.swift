@@ -11,4 +11,5 @@ extension Color {
     public static let cardBackground = Color("Color/CardBackground")
     public static let inviteFriendBackground = Color("Color/InviteFriendBackground")
     public static let inviteYourFriend = Color("Color/InviteYourFriend")
+    public static let coinSubheadline = Color("Color/CoinSubheadline")
 }
