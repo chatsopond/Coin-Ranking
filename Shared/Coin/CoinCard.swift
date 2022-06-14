@@ -18,8 +18,8 @@ struct CoinCard: View {
     
     var body: some View {
         CardRectangle()
+            .frame(height: type == .row ? 82 : 160)
             .overlay(content)
-            .frame(height: type == .row ? 82 : 140)
     }
     
     var content: some View {
@@ -45,6 +45,7 @@ struct CoinCard: View {
             VStack(alignment:.leading, spacing: 6) {
                 Text(coin.name)
                     .font(.headline)
+                    .foregroundColor(.coinPrimary)
                 Text(coin.symbol)
                     .font(.subheadline.weight(.semibold))
                     .foregroundColor(.coinSubheadline)
@@ -52,6 +53,7 @@ struct CoinCard: View {
             Spacer()
             VStack(alignment:.trailing, spacing: 6) {
                 Text("$\(coin.price, specifier: "%.5f")")
+                    .foregroundColor(.coinPrimary)
                     .font(.subheadline.weight(.semibold))
                 changeSection
             }
@@ -64,9 +66,10 @@ struct CoinCard: View {
                 .frame(width: 40, height: 40)
             Text(coin.symbol)
                 .font(.headline.weight(.semibold))
-                .foregroundColor(.coinSubheadline)
+                .foregroundColor(.coinPrimary)
             Text(coin.name)
                 .font(.subheadline)
+                .foregroundColor(.coinSubheadline)
             changeSection
         }
     }

@@ -12,4 +12,8 @@ extension Color {
     public static let inviteFriendBackground = Color("Color/InviteFriendBackground")
     public static let inviteYourFriend = Color("Color/InviteYourFriend")
     public static let coinSubheadline = Color("Color/CoinSubheadline")
+    public static let coinPrimary = Color("Color/CoinPrimary")
+    public static let searchPlaceholder = Color("Color/SearchPlaceholder")
+    public static let searchBackground = Color("Color/SearchBackground")
+    public static let topRank = Color("Color/TopRank")
 }

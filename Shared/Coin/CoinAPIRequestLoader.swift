@@ -30,13 +30,14 @@ class CoinAPIRequestLoader {
     
     var urlSession: URLSession = URLSession.shared
     
-    private func makeGetCoinsRequest(limit: Int, offset: Int) -> URLRequest {
-        let url = URL(string: apiGetCoinsURLString + "?limit=\(limit)&offset=\(offset)")!
+    private func makeGetCoinsRequest(limit: Int, offset: Int, search: String) -> URLRequest {
+        let url = URL(string: apiGetCoinsURLString + "?limit=\(limit)&offset=\(offset)&search=\(search)")!
         return URLRequest(url: url)
     }
     
-    func loadGetCoinsRequest(limit: Int = 10, offset: Int) async throws -> [Coin] {
-        let request = makeGetCoinsRequest(limit: limit, offset: offset)
+    func loadGetCoinsRequest(limit: Int = 10, offset: Int, search: String = "") async throws -> [Coin] {
+        let searchParam = search.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+        let request = makeGetCoinsRequest(limit: limit, offset: offset, search: searchParam)
         let (data, response) = try await urlSession.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else {
             logger.warning("can't convert response to HTTPURLResponse")
@@ -45,6 +46,11 @@ class CoinAPIRequestLoader {
         guard httpResponse.statusCode == 200 else {
             logger.warning("statusCode != 200, \(httpResponse.statusCode)")
             throw CoinAPIRequestLoaderError.invalidResponse
+        }
+        do {
+            _ = try JSONDecoder().decode(CoinAPIResponse.self, from: data)
+        } catch {
+            print("\(error)")
         }
         guard let resp = try? JSONDecoder().decode(CoinAPIResponse.self, from: data) else {
             let dataString = try? JSONSerialization.jsonObject(with: data) as? [String: Any]

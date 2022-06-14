@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6B6E8AC228591E86008752DE /* PreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E8AC128591E86008752DE /* PreferenceKey.swift */; };
+		6B6E8AC428593BB1008752DE /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E8AC328593BB1008752DE /* ExploreViewModel.swift */; };
 		6BAEFCEE2858FC2E00A2C8BA /* LMWN_Coin_2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFCED2858FC2E00A2C8BA /* LMWN_Coin_2App.swift */; };
 		6BAEFCF02858FC2E00A2C8BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEFCEF2858FC2E00A2C8BA /* ContentView.swift */; };
 		6BAEFCF22858FC2F00A2C8BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BAEFCF12858FC2F00A2C8BA /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		6B6E8AC128591E86008752DE /* PreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKey.swift; sourceTree = "<group>"; };
+		6B6E8AC328593BB1008752DE /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		6BAEFCEA2858FC2E00A2C8BA /* LMWN Coin 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LMWN Coin 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BAEFCED2858FC2E00A2C8BA /* LMWN_Coin_2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMWN_Coin_2App.swift; sourceTree = "<group>"; };
 		6BAEFCEF2858FC2E00A2C8BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				6BAEFCFE2858FCB500A2C8BA /* Resource */,
 				6BAEFCFC2858FC6500A2C8BA /* ExploreView.swift */,
 				6BAEFD112859047C00A2C8BA /* Supporting Files */,
+				6B6E8AC328593BB1008752DE /* ExploreViewModel.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				6B6E8AC228591E86008752DE /* PreferenceKey.swift in Sources */,
 				6BAEFD1B28590A4700A2C8BA /* CoinAPIRequestLoader.swift in Sources */,
 				6BAEFD102859047300A2C8BA /* AsyncRemoteImage.swift in Sources */,
+				6B6E8AC428593BB1008752DE /* ExploreViewModel.swift in Sources */,
 				6BAEFD182859075800A2C8BA /* Coin.swift in Sources */,
 				6BAEFD1D28590B1600A2C8BA /* CoinAPIResponse.swift in Sources */,
 				6BAEFCEE2858FC2E00A2C8BA /* LMWN_Coin_2App.swift in Sources */,

@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
-import os
 
 struct ExploreView: View {
     
     @StateObject var viewModel = ExploreViewModel()
     @State var hasScrolled = false
+    @State var searchText = ""
+    var sortedCoins: [Coin] {
+        Array(viewModel.coins).sorted{ $0.rank < $1.rank }
+    }
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -21,37 +24,109 @@ struct ExploreView: View {
                     .transition(.opacity)
                     .zIndex(100)
             }
-            scrollView
+            content
         }
+        .animation(.default, value: viewModel.isFetching)
+        .animation(.default, value: viewModel.isRefreshing)
+    }
+    
+    var content: some View {
+        VStack(spacing: 16) {
+            searchField
+            VStack(spacing: 0) {
+                Divider()
+                scrollView
+            }
+        }
+    }
+    
+    var searchField: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.searchPlaceholder)
+            TextField("Search", text: $searchText)
+            Button {
+                searchText = ""
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+            }
+            .foregroundColor(.searchPlaceholder)
+            .disabled(searchText.isEmpty)
+            .opacity(searchText.isEmpty ? 0 : 1)
+        }
+        .padding(16)
+        .background(Color.searchBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .padding(16)
     }
     
     var scrollView: some View {
         ScrollView {
             scrollDetection
-            LazyVStack {
-                ForEach(Array(viewModel.coins)) { coin in
-                    CoinCard(type: .row, coin: coin)
-                }
-                
+            VStack(alignment: .leading, spacing: 0) {
+                listWithoutTopRank
+            }
+            LazyVStack{
                 // Bottom
                 Color.clear.frame(height: 80)
-                    .overlay(
-                        fetchStatus
-                        .onAppear {
-                            viewModel.fetchStatusDidAppear()
-                        }
-                    )
+                    .overlay(fetchStatus.onAppear{viewModel.fetchStatusDidAppear()})
             }
-            .padding()
         }
         .coordinateSpace(name: "scroll")
+    }
+    
+    
+    var listWithoutTopRank: some View {
+        LazyVStack(alignment: .leading, spacing: 12) {
+            Text("Buy, sell and hold crypto")
+                .fontWeight(.semibold)
+                .padding(.horizontal, 16)
+            ForEach(Array(sortedCoins.enumerated()), id: \.element) { i, coin in
+                CoinCard(type: .row, coin: coin)
+            }
+        }
+        .padding(.horizontal, 8)
+    }
+    
+    @ViewBuilder
+    var listWithTopRank: some View {
+        if sortedCoins.count > 3 {
+            VStack(alignment: .leading, spacing: 12) {
+                (
+                    Text("Top ") +
+                    Text("3 ")
+                        .foregroundColor(.topRank) +
+                    Text("rank crypto")
+                )
+                .fontWeight(.semibold)
+                .padding(.horizontal, 16)
+                HStack {
+                    ForEach(0..<3) { i in
+                        CoinCard(type: .column, coin: sortedCoins[i])
+                    }
+                }
+                .padding(.horizontal, 15)
+            }
+            .padding(.bottom, 22)
+        }
+        LazyVStack(alignment: .leading, spacing: 12) {
+            Text("Buy, sell and hold crypto")
+                .fontWeight(.semibold)
+                .padding(.horizontal, 16)
+            ForEach(Array(sortedCoins.enumerated()), id: \.element) { i, coin in
+                if i > 2 {
+                    CoinCard(type: .row, coin: coin)
+                }
+            }
+        }
+        .padding(.horizontal, 8)
     }
     
     @ViewBuilder
     var fetchStatus: some View {
         switch viewModel.fetchState {
         case .error:
-            VStack {
+            VStack(spacing: 4) {
                 Text("Cloud not load data")
                 Button("Try again") {
                     viewModel.tryAgainDidPress()
@@ -72,7 +147,8 @@ struct ExploreView: View {
     var scrollDetection: some View {
         GeometryReader { proxy in
             let offset = proxy.frame(in: .named("scroll")).minY
-            Text("\(offset)").preference(key: ScrollPreferenceKey.self, value: offset)
+            Color.clear.preference(key: ScrollPreferenceKey.self, value: offset)
+                .frame(height: 20)
         }
         .onPreferenceChange(ScrollPreferenceKey.self) { value in
             withAnimation(.easeInOut) {
@@ -85,104 +161,6 @@ struct ExploreView: View {
     }
 }
 
-enum ExploreViewFetchState: String {
-    case ready, fetching, error
-}
-
-class ExploreViewModel: ObservableObject {
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier!,
-                        category: String(describing: ExploreViewModel.self))
-    let coinAPI = CoinAPIRequestLoader()
-    
-    // MARK: - Published Variable
-    @Published var fetchState: ExploreViewFetchState = .error
-    @Published var coins = Set<Coin>()
-    @Published var isRefreshing = false
-    @Published var isFetching = false
-    
-    // MARK: - Update Published Variable
-    @MainActor
-    func updateFetchState(to newState: ExploreViewFetchState) {
-        logger.log("Update FetchState to \(newState.rawValue)")
-        fetchState = newState
-    }
-    
-    @MainActor
-    func insert(_ coin: Coin) {
-        coins.insert(coin)
-    }
-    
-    @MainActor
-    func updateRefreshUIState(_ to: Bool) {
-        isRefreshing = to
-    }
-    
-    @MainActor
-    func updateFetchUIState(_ to: Bool) {
-        isFetching = to
-    }
-    
-    @MainActor
-    func replaceCoins() async {
-        
-    }
-    
-    @MainActor
-    func loadNextCoins() async {
-        
-    }
-    
-    // MARK: - Views
-    
-    @MainActor
-    func pulling() {
-        updateFetchState(to: .ready)
-        pullDidRequest()
-    }
-    
-    @MainActor
-    func tryAgainDidPress() {
-        updateFetchState(to: .ready)
-        tryLoadCoins()
-    }
-    
-    @MainActor
-    func fetchStatusDidAppear() {
-        print("fetchStatusDidAppear")
-        tryLoadCoins()
-    }
-    
-    func pullDidRequest() {
-        guard fetchState == .ready else { return }
-        Task {
-            await updateRefreshUIState(true)
-            try await Task.sleep(nanoseconds: 1_000_000_000)
-            await replaceCoins()
-            await updateRefreshUIState(false)
-        }
-    }
-    
-    
-    func tryLoadCoins() {
-        guard fetchState == .ready else { return }
-        Task {
-            await updateFetchState(to: .fetching)
-            await updateFetchUIState(true)
-            do {
-                let coins = try await coinAPI.loadGetCoinsRequest(offset: coins.count)
-                for coin in coins {
-                    await insert(coin)
-                }
-            } catch {
-                await updateFetchUIState(false)
-                await updateFetchState(to: .error)
-                return
-            }
-            await updateFetchUIState(false)
-            await updateFetchState(to: .ready)
-        }
-    }
-}
 
 struct ExploreView_Previews: PreviewProvider {
     static var previews: some View {

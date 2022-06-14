@@ -9,10 +9,6 @@ import Foundation
 import os
 
 /// The cryptocurrency coin
-///
-/// You can construct `Coin` and access their parts.
-/// If you have a bunch of coin in `jsonObject` or `[[String:Any]]`,
-/// you can get the array of `Coin` by calling `Coin.generateCoins(dict)`
 struct Coin: Decodable, Identifiable, Hashable {
     var uuid: String
     var symbol: String
@@ -32,7 +28,7 @@ struct Coin: Decodable, Identifiable, Hashable {
 
     
     private enum CodingKeys: String, CodingKey {
-        case uuid, symbol, name, color, iconUrl, marketCap, price, btcPrice, listedAt, change, rank
+        case uuid, symbol, name, color, iconUrl, marketCap, price, change, rank
     }
     
     private enum CoinDecodeError: Error {
@@ -66,7 +62,7 @@ struct Coin: Decodable, Identifiable, Hashable {
         let uuid = try container.decode(String.self, forKey: .uuid)
         let symbol = try container.decode(String.self, forKey: .symbol)
         let name = try container.decode(String.self, forKey: .name)
-        let color = try container.decode(String.self, forKey: .color)
+        let color = (try? container.decode(String.self, forKey: .color)) ?? "#333333"
         let iconUrlString = try container.decode(String.self, forKey: .iconUrl)
         guard let iconUrl = URL(string: iconUrlString) else { throw CoinDecodeError.iconUrl }
         let marketCapString = try container.decode(String.self, forKey: .marketCap)
