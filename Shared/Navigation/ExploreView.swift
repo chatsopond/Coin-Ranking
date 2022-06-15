@@ -18,6 +18,7 @@ struct ExploreView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
+            Color.clear
             if viewModel.isRefreshing {
                 LoadingView(style: .button)
                     .padding(.top, 20)
@@ -35,8 +36,21 @@ struct ExploreView: View {
             searchField
             VStack(spacing: 0) {
                 Divider()
-                scrollView
+                queryResult
             }
+        }
+    }
+    
+    var queryResult: some View {
+        ZStack {
+            Color.clear
+            if !searchText.isEmpty && viewModel.coins.isEmpty {
+                Color.white.overlay(
+                    noResult
+                )
+                .zIndex(200)
+            }
+            scrollView
         }
     }
     
@@ -58,18 +72,25 @@ struct ExploreView: View {
         .background(Color.searchBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .padding(16)
+        .onChange(of: searchText) { newValue in
+            viewModel.search(query: newValue)
+        }
     }
     
     var scrollView: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             scrollDetection
             VStack(alignment: .leading, spacing: 0) {
-                listWithoutTopRank
+                if searchText.isEmpty {
+                    listWithTopRank
+                } else {
+                    listWithoutTopRank
+                }
             }
             LazyVStack{
                 // Bottom
                 Color.clear.frame(height: 80)
-                    .overlay(fetchStatus.onAppear{viewModel.fetchStatusDidAppear()})
+                    .overlay(fetchStatus.onAppear{viewModel.fetchStatusDidAppear(query: searchText)})
             }
         }
         .coordinateSpace(name: "scroll")
@@ -82,6 +103,9 @@ struct ExploreView: View {
                 .fontWeight(.semibold)
                 .padding(.horizontal, 16)
             ForEach(Array(sortedCoins.enumerated()), id: \.element) { i, coin in
+                if viewModel.invitePositon.contains(i+1) {
+                    InviteFriend()
+                }
                 CoinCard(type: .row, coin: coin)
             }
         }
@@ -114,6 +138,9 @@ struct ExploreView: View {
                 .fontWeight(.semibold)
                 .padding(.horizontal, 16)
             ForEach(Array(sortedCoins.enumerated()), id: \.element) { i, coin in
+                if viewModel.invitePositon.contains(i-2) {
+                    InviteFriend()
+                }
                 if i > 2 {
                     CoinCard(type: .row, coin: coin)
                 }
@@ -144,6 +171,29 @@ struct ExploreView: View {
         }
     }
     
+}
+
+
+struct ExploreView_Previews: PreviewProvider {
+    static var previews: some View {
+        ExploreView()
+    }
+}
+
+// MARK: - View Components
+
+extension ExploreView {
+    
+    var noResult: some View {
+        VStack(spacing: 12) {
+            Text("Sorry")
+                .font(.title3.weight(.semibold))
+                .foregroundColor(.coinPrimary)
+            Text("No result match this keyword")
+                .foregroundColor(.coinSubheadline)
+        }
+    }
+    
     var scrollDetection: some View {
         GeometryReader { proxy in
             let offset = proxy.frame(in: .named("scroll")).minY
@@ -156,14 +206,7 @@ struct ExploreView: View {
             }
         }
         .onChange(of: hasScrolled) { newValue in
-            if hasScrolled { viewModel.pulling() }
+            if hasScrolled && searchText.isEmpty { viewModel.pulling() }
         }
-    }
-}
-
-
-struct ExploreView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExploreView()
     }
 }

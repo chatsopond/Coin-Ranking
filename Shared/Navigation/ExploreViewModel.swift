@@ -7,6 +7,7 @@
 
 import SwiftUI
 import os
+import Combine
 
 enum ExploreViewFetchState: String {
     case ready, fetching, error
@@ -18,10 +19,43 @@ class ExploreViewModel: ObservableObject {
     let coinAPI = CoinAPIRequestLoader()
     
     // MARK: - Published Variable
-    @Published var fetchState: ExploreViewFetchState = .error
+    @Published var fetchState: ExploreViewFetchState = .ready
     @Published var coins = Set<Coin>()
     @Published var isRefreshing = false
     @Published var isFetching = false
+    @Published var invitePositon: [Int] = []
+    
+    // MARK: Search Systems
+    let queue = DispatchQueue(label: String(describing: ExploreViewModel.self))
+    var deboucedSearch = PassthroughSubject<Void, Never>()
+    var searchCancellable: AnyCancellable?
+    func search(query: String) {
+        searchCancellable = deboucedSearch
+            .timeout(.seconds(1), scheduler: queue)
+            .sink(receiveCompletion: { [weak self] _ in
+                // Debounced
+                // Start call search
+                self?.tryLoadCoins(isForced: true, isReset: true, query: query)
+            }, receiveValue: { _ in
+                // Nothing to do
+            })
+    }
+    
+    // MARK: Update Invitation Position
+    @MainActor
+    func updateInvitePosition() {
+        let maximum = coins.count
+        /// invitation position
+        var n = 5
+        invitePositon.removeAll()
+        while n < (maximum + invitePositon.count) {
+            /// the position offset according to the number of invitation cards inserted previously.
+            let offset = invitePositon.count
+            invitePositon.append(n - offset)
+            n *= 2
+        }
+        logger.log("Invitation count: \(self.invitePositon.count), \(self.invitePositon), max: \(self.coins.count)")
+    }
     
     // MARK: - Update Published Variable
     @MainActor
@@ -50,17 +84,7 @@ class ExploreViewModel: ObservableObject {
         isFetching = to
     }
     
-    @MainActor
-    func replaceCoins() async {
-        
-    }
-    
-    @MainActor
-    func loadNextCoins() async {
-        
-    }
-    
-    // MARK: - Views
+    // MARK: - View Calling
     
     @MainActor
     func pulling() {
@@ -71,14 +95,15 @@ class ExploreViewModel: ObservableObject {
     @MainActor
     func tryAgainDidPress() {
         updateFetchState(to: .ready)
-        tryLoadCoins()
+        tryLoadCoins(query: "")
     }
     
     @MainActor
-    func fetchStatusDidAppear() {
-        print("fetchStatusDidAppear")
-        tryLoadCoins()
+    func fetchStatusDidAppear(query: String) {
+        tryLoadCoins(query: query)
     }
+    
+    // MARK: - Functions
     
     func pullDidRequest() {
         guard fetchState == .ready else { return }
@@ -100,13 +125,14 @@ class ExploreViewModel: ObservableObject {
                 await updateFetchState(to: .error)
                 return
             }
+            await updateInvitePosition()
             await updateRefreshUIState(false)
             await updateFetchState(to: .ready)
         }
     }
     
-    func tryLoadCoins(isReset: Bool = false) {
-        guard fetchState == .ready else { return }
+    func tryLoadCoins(isForced: Bool = false, isReset: Bool = false, query: String) {
+        guard fetchState == .ready || isForced else { return }
         Task {
             await updateFetchState(to: .fetching)
             await updateFetchUIState(true)
@@ -114,9 +140,9 @@ class ExploreViewModel: ObservableObject {
                 var offset = coins.count
                 if isReset {
                     offset = 0
-                    await replaceCoins()
+                    await clearCoins()
                 }
-                let coins = try await coinAPI.loadGetCoinsRequest(offset: offset)
+                let coins = try await coinAPI.loadGetCoinsRequest(offset: offset, search: query)
                 for coin in coins {
                     await insert(coin)
                 }
@@ -125,6 +151,7 @@ class ExploreViewModel: ObservableObject {
                 await updateFetchState(to: .error)
                 return
             }
+            await updateInvitePosition()
             await updateFetchUIState(false)
             await updateFetchState(to: .ready)
         }

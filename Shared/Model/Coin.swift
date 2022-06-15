@@ -65,7 +65,7 @@ struct Coin: Decodable, Identifiable, Hashable {
         let color = (try? container.decode(String.self, forKey: .color)) ?? "#333333"
         let iconUrlString = try container.decode(String.self, forKey: .iconUrl)
         guard let iconUrl = URL(string: iconUrlString) else { throw CoinDecodeError.iconUrl }
-        let marketCapString = try container.decode(String.self, forKey: .marketCap)
+        let marketCapString = (try? container.decode(String.self, forKey: .marketCap)) ?? "0"
         guard let marketCap = Double(marketCapString) else { throw CoinDecodeError.marketCap }
         let priceString = try container.decode(String.self, forKey: .price)
         guard let price = Double(priceString) else { throw CoinDecodeError.price }

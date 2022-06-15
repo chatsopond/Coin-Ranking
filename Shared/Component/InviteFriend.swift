@@ -8,10 +8,22 @@
 import SwiftUI
 
 struct InviteFriend: View {
+    
+    @State var isPresentedActivityView = false
+    
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
             .foregroundColor(.inviteFriendBackground)
             .overlay(content)
+            .frame(height: 82)
+            .clipped()
+            .contentShape(Rectangle())
+            .onTapGesture {
+                isPresentedActivityView = true
+            }
+            .sheet(isPresented: $isPresentedActivityView) {
+                ShareActivityView(activityItems: [URL(string: "https://careers.lmwn.com")!])
+            }
     }
     
     var presentIcon: some View {

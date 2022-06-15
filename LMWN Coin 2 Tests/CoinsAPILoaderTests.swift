@@ -26,7 +26,7 @@ class CoinsAPILoaderTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testGetSingleCoins() async {
+    func testGetCoins() async {
         // Given
         let limit = 1
         let offset = 0
@@ -43,6 +43,45 @@ class CoinsAPILoaderTests: XCTestCase {
         
         // Then
         XCTAssertNotNil(coins)
+    }
+    
+    func testGetInvalidCoin() async {
+        // Given
+        let uuid = "Qwsogvtv82FCdaaa"
+        let mockJson = JsonLoader.stringFrom(
+            for: type(of: self),
+            forResource: "coin-\(uuid)")
+            .data(using: .utf8)!
+        MockURLProtocol.requestHandler = { request in
+            return (HTTPURLResponse(), mockJson)
+        }
+        
+        do {
+            // When
+            _ = try await sut.loadGetCoinDetailRequest(uuid: uuid)
+        } catch {
+            // Then
+            XCTAssertEqual(error as! CoinAPIRequestLoaderError, .invalidStatus)
+        }
+    }
+    
+    func testGetValidCoin() async {
+        // Given
+        let uuid = "Qwsogvtv82FCd"
+        let mockJson = JsonLoader.stringFrom(
+            for: type(of: self),
+            forResource: "coin-\(uuid)")
+            .data(using: .utf8)!
+        MockURLProtocol.requestHandler = { request in
+            return (HTTPURLResponse(), mockJson)
+        }
+        
+        // When
+        let coin = try? await sut.loadGetCoinDetailRequest(uuid: uuid)
+        
+        // Then
+        XCTAssertNotNil(coin)
+        XCTAssertEqual(coin!.uuid, uuid)
     }
 
 }

@@ -13,6 +13,8 @@ enum CoinCardType {
 
 struct CoinCard: View {
     
+    @State var isPresentedDetail = false
+    
     let type: CoinCardType
     let coin: Coin
     
@@ -20,6 +22,13 @@ struct CoinCard: View {
         CardRectangle()
             .frame(height: type == .row ? 82 : 160)
             .overlay(content)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                isPresentedDetail = true
+            }
+            .sheet(isPresented: $isPresentedDetail) {
+                CoinDetailView(coin: coin)
+            }
     }
     
     var content: some View {

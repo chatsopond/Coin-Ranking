@@ -1,0 +1,5 @@
+{
+    "status": "fail",
+    "type": "COIN_NOT_FOUND",
+    "message": "Coin not found"
+}

@@ -16,11 +16,12 @@ struct AsyncRemoteImage: View {
         if let url = url,
            url.pathExtension.contains("svg") {
             SVGAsyncImage(remoteURL: url)
+                .scaledToFit()
         } else {
             CachedAsyncImage(url: url) { image in
                 image
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
             } placeholder: {
                 ProgressView()
             }

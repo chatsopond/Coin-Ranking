@@ -16,4 +16,6 @@ extension Color {
     public static let searchPlaceholder = Color("Color/SearchPlaceholder")
     public static let searchBackground = Color("Color/SearchBackground")
     public static let topRank = Color("Color/TopRank")
+    
+    public static let gray700 = Color("Color/Gray/700")
 }
