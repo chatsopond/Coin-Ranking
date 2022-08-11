@@ -4,10 +4,23 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>LMWN Coin 2.xcscheme_^#shared#^_</key>
+		<key>Coin Ranking.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>6BAEFCE92858FC2E00A2C8BA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6BAEFD2128590E0D00A2C8BA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
